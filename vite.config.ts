@@ -8,5 +8,5 @@ export default defineConfig({
     react(),
     tailwindcss()
   ],
-  base: "/main/"
+  base: "https://diegogtdev.github.io/UMG-Diagramas-DT/"
 })
