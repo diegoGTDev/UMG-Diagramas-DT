@@ -1,26 +1,40 @@
 import './index.css'
 
-function App() {
+import AutomataDiagram from './AutomataDiagram';
+import { useRef } from 'react';
 
+function App() {
+  // Referencia para acceder a la función de añadir estado en el hijo
+  const addStateRef = useRef<() => void>(undefined);
 
   return (
-    <>
-      <div className="bg-[#1F4B76] p-2 w-full flex flex-row">
-        <img
-          src={`${import.meta.env.BASE_URL}mariano_logo.png`}
-          alt="Logo de la mariano galvez"
-          className="size-20"
-        />
-        <form action="" className="w-full flex flex-row justify-center items-center mt-5">
-          <div className="relative z-0 w-2xl mb-5 group">
-            <input type="email" name="floating_email" id="floating_email" className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-red-500 peer" placeholder="" required />
-            <label htmlFor="floating_email" className="peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-gray-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Expresión Regular</label>
-          </div>
-        </form>
-      </div>
-      <h1 className="text-2xl font-bold text-black">Hello world</h1>
-    </>
-  )
+    <div className="flex h-screen">
+      {/* Sidebar */}
+      <aside className="w-64 bg-[#223A5F] text-white flex flex-col p-4 shadow-lg">
+        <div className="flex flex-col items-center mb-8">
+          <img
+            src={`${import.meta.env.BASE_URL}mariano_logo.png`}
+            alt="Logo de la mariano galvez"
+            className="size-20 mb-2"
+          />
+          <h1 className="text-xl font-bold text-center">Diagrama de Autómatas</h1>
+        </div>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4"
+          onClick={() => addStateRef.current && addStateRef.current()}
+        >
+          Añadir Estado
+        </button>
+        <div className="flex-1">
+          <p className="text-sm text-gray-300">Barra lateral para herramientas y componentes</p>
+        </div>
+      </aside>
+      {/* Main content */}
+      <main className="flex-1 bg-white">
+        <AutomataDiagram setAddStateRef={fn => { addStateRef.current = fn; }} />
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;

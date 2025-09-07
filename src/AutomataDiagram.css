@@ -1,0 +1,14 @@
+.edge-label-input {
+  width: 60px;
+  font-size: 12px;
+}
+
+.edge-label-group {
+  cursor: pointer;
+}
+
+.edge-label-text {
+  user-select: none;
+  font-size: 12px;
+  fill: #1F4B76;
+}
